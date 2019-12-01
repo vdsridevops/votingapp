@@ -1,0 +1,6 @@
+---
+
+apachehost1: ansible-node1
+apachehost2: ansible-node2
+apachehost1ip: 10.152.0.4
+apachehost2ip: 10.152.0.5

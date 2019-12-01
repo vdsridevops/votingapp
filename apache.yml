@@ -1,0 +1,13 @@
+---
+
+- name: Install apache 
+  hosts: webservers
+  debugger: on_failed
+  roles:
+    - apache
+
+- name: install and configure Loadbalancer
+  hosts: loadbalancer
+  debugger: on_failed
+  roles:
+    - haproxy

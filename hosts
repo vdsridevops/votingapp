@@ -1,0 +1,6 @@
+[webservers]
+ansible-node1
+ansible-node2
+
+[loadbalancer]
+haproxy
