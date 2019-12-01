@@ -1,0 +1,7 @@
+git checkout master
+git fetch -p origin
+   48  git pull --rebase
+   50  git checkout votingapp/pisu
+   52  git checkout -b pisu
+   53  git status
+   55  git rebase master
