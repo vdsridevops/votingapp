@@ -1,0 +1,35 @@
+git checkout master
+git fetch -p origin
+   48  git pull --rebase
+   50  git checkout votingapp/pisu
+   52  git checkout -b pisu
+   53  git status
+   55  git rebase master
+
+
+[root@jumphost votingapp]# git config --global push.default simple
+[root@jumphost votingapp]# git push -f
+fatal: The current branch pisu has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin pisu
+
+[root@jumphost votingapp]# git push -f origin
+fatal: The current branch pisu has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin pisu
+
+[root@jumphost votingapp]# git push --set-upstream origin pisu
+Counting objects: 4, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 383 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: Create a pull request for 'pisu' on GitHub by visiting:
+remote:      https://github.com/vdsridevops/votingapp/pull/new/pisu
+remote:
+To git@github.com:vdsridevops/votingapp.git
+ * [new branch]      pisu -> pisu
+Branch pisu set up to track remote branch pisu from origin.
