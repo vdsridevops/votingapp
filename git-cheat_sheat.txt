@@ -1,35 +1,127 @@
-git checkout master
-git fetch -p origin
-   48  git pull --rebase
-   50  git checkout votingapp/pisu
-   52  git checkout -b pisu
-   53  git status
-   55  git rebase master
+# Checkout to Master branch
 
+git checkout master
+
+[root@jumphost-centos7 voting]# git checkout master
+Switched to branch 'master'
+
+
+# Fetch down all the branches from that Git remote
+
+git fetch -p origin
+
+[root@jumphost-centos7 voting]# git fetch -p origin
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 7 (delta 3), reused 5 (delta 2), pack-reused 0
+Unpacking objects: 100% (7/7), done.
+From github.com:vdsridevops/votingapp
+   6cd6611..682d716  master     -> origin/master
+ * [new branch]      pisu-commit2 -> origin/pisu-commit2
+ * [new branch]      pisu-commit3 -> origin/pisu-commit3
+
+
+# fetch and merge any commits from the tracking remote branch
+
+git pull --rebase origin master
+
+[root@jumphost-centos7 voting]# git pull --rebase origin master
+From github.com:vdsridevops/votingapp
+ * branch            master     -> FETCH_HEAD
+First, rewinding head to replay your work on top of it...
+Fast-forwarded master to c8086153e03725141e1c6d04fba6d43352b87607.
+
+# Add a New Remote to your local Git Repo
+
+git remote add origin git@github.com:vdsridevops/votingapp.git
+
+[root@jumphost-centos7 voting]# git remote add origin git@github.com:vdsridevops/votingapp.git
+
+
+# Create new branch named v1.0
+
+git checkout -b v1.0
+
+[root@jumphost-centos7 voting]# git checkout -b v1.0
+Switched to a new branch 'v1.0'
+
+
+# Check git branch status
+
+git status
+
+# Rebase your branch v1.0 with master branch
+
+git rebase master
+
+
+# To push only the current branch
+
+git config --global push.default simple
 
 [root@jumphost votingapp]# git config --global push.default simple
+
+
+# To push to remote repo
+
 [root@jumphost votingapp]# git push -f
-fatal: The current branch pisu has no upstream branch.
+fatal: The current branch v1.o has no upstream branch.
 To push the current branch and set the remote as upstream, use
 
-    git push --set-upstream origin pisu
+    git push --set-upstream origin v1.0
 
-[root@jumphost votingapp]# git push -f origin
-fatal: The current branch pisu has no upstream branch.
-To push the current branch and set the remote as upstream, use
 
-    git push --set-upstream origin pisu
-
-[root@jumphost votingapp]# git push --set-upstream origin pisu
-Counting objects: 4, done.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 383 bytes | 0 bytes/s, done.
+[root@jumphost-centos7 voting]# git push --set-upstream origin v1.0
+Counting objects: 5, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 299 bytes | 0 bytes/s, done.
 Total 3 (delta 1), reused 0 (delta 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 remote:
-remote: Create a pull request for 'pisu' on GitHub by visiting:
-remote:      https://github.com/vdsridevops/votingapp/pull/new/pisu
+remote: Create a pull request for 'v1.0' on GitHub by visiting:
+remote:      https://github.com/vdsridevops/votingapp/pull/new/v1.0
 remote:
 To git@github.com:vdsridevops/votingapp.git
- * [new branch]      pisu -> pisu
-Branch pisu set up to track remote branch pisu from origin.
+ * [new branch]      v1.0 -> v1.0
+Branch v1.0 set up to track remote branch v1.0 from origin.
+[root@jumphost-centos7 voting]#
+
+
+
+# To get Hash id from git remote repo
+
+git log --all
+
+# you can use git cherry-pick to pull the changes introduced to a sub-branch, without changing the branch, by your colleague working on the same project.
+
+git checkout <target branch>
+git cherry-pick <hash tag>
+git push
+
+[root@jumphost-centos7 voting]# git cherry-pick f458167204cca55988cf81103db5093c3be99972
+[v1.0 7854cfb]  pisu-commit3-file-created
+ Author: pisu <saipsr@outlook.com>
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 pisu-commit3.txt
+[root@jumphost-centos7 voting]# git status
+# On branch v1.0
+# Your branch is ahead of 'origin/v1.0' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+
+[root@jumphost-centos7 voting]# ls
+1  apache.yml  group_vars  hosts  main.orig  main.yml  pisu-commit3.txt  README.doc  README.md  roles  votingapp
+
+[root@jumphost-centos7 voting]# git push
+Counting objects: 4, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 315 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To git@github.com:vdsridevops/votingapp.git
+   a4055eb..7854cfb  v1.0 -> v1.0
+
+
+
