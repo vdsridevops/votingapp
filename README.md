@@ -1,2 +1,1 @@
-# votingapp
-PHP Voting application with haproxy
+# v1.0 giving it to Customer
